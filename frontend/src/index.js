@@ -12,8 +12,6 @@ import SlugItem from './components/SlugItem';
 import { createContext } from "react";
 import { Provider } from "react-redux";
 import { appStore } from "./store/appStore";
-import Login from './components/Login';
-import Signup from './components/Signup';
 
 export const Data = createContext();
 const Layout = () => {
@@ -38,9 +36,7 @@ const router = createBrowserRouter([
       { path: '/trending', element: <Trending /> },
       { path: '/watchlist', element: <Watchlist /> },
       { path: '/top10', element: <Top10 /> },
-      { path: '/coin/:id', element: <SlugItem /> },
-      { path: '/login', element: <Login /> },
-      { path: '/signup', element: <Signup /> },
+      { path: '/coin/:id', element: <SlugItem /> }
     ],
   },
 ]);

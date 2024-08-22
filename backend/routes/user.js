@@ -36,11 +36,15 @@ router.post("/signup", signupMiddleware, async (req, res) => {
         })
     }
     catch (e) {
-        return res.status(401).json({ msg: 'Some Error Occured' })
+        return res.status(401).json({
+            success: false,
+            msg: 'Some Error Occured'
+        })
     }
 })
 
 router.post("/signin", signinMiddleware, async (req, res) => {
+    console.log(req.body)
     const { success } = signinBody.safeParse(req.body)
     if (!success) {
         return res.status(411).json({ msg: 'Invalid Input' })
@@ -57,6 +61,7 @@ router.post("/signin", signinMiddleware, async (req, res) => {
     }
     catch (e) {
         res.json({
+            success: false,
             msg: e
         })
     }

@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
-// import { MdOutlineArrowForwardIos, MdOutlineArrowBackIos } from "react-icons/md";
 import Cards from './Cards';
 import { HashLoader } from 'react-spinners';
 import top from '../images/top.png'
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 const Top10 = () => {
   const navigate = useNavigate()
   useEffect(() => {

@@ -4,7 +4,6 @@ import Cards from './Cards';
 import { HashLoader } from 'react-spinners';
 import trend from '../images/trend2.png'
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 
 const Trending = () => {
   const navigate = useNavigate()

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useRef, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Login = ({ isOpen, closeLog, openSign, setLogged }) => {
     const modalRef = useRef(null);
@@ -16,23 +16,23 @@ const Login = ({ isOpen, closeLog, openSign, setLogged }) => {
 
     const submitHandler = async (e) => {
         e.preventDefault()
-        console.log(creds)
-        const res = await axios.post('http://localhost:5000/api/v1/user/signin',
-            { username, password },
-            {
-                headers: {
-                    "Content-Type": "application/json"
-                },
-            })
-        const json = res.data;
-        if (json.success) {
+        try {
+            const res = await axios.post('http://localhost:5000/api/v1/user/signin',
+                { username, password },
+                {
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                }
+            )
+            const json = res.data;
             localStorage.setItem("token", json.token)
             closeLog()
             setLogged(true)
             navigate('/')
         }
-        else {
-            alert(json.msg)
+        catch (err) {
+            alert(err.response.data.msg)
         }
     }
     const onchange = (e) => {
@@ -56,6 +56,8 @@ const Login = ({ isOpen, closeLog, openSign, setLogged }) => {
                             className="bg-gray-800 block w-2/3 px-3 py-2 border border-gray-800 rounded-lg shadow-sm focus:outline-none focus:ring-green-600 focus:border-green-600 focus:border-[2px] sm:text-sm"
                             placeholder="Username"
                             onChange={onchange}
+                            value={username}
+                            required
                         />
                     </div>
                     <div className='flex gap-6 items-center justify-center'>
@@ -66,6 +68,8 @@ const Login = ({ isOpen, closeLog, openSign, setLogged }) => {
                             className=" bg-gray-800 block w-2/3 px-3 py-2 border border-gray-800 rounded-lg shadow-sm focus:outline-none focus:ring-green-600 focus:border-green-600 focus:border-[2px] sm:text-sm"
                             placeholder="Password"
                             onChange={onchange}
+                            value={password}
+                            required
                         />
                     </div>
                     <div className='flex justify-center'>

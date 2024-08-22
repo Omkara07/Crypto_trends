@@ -16,21 +16,23 @@ const Signup = ({ isOpen, closeSign, openLog, setLogged }) => {
 
     const submitHandler = async (e) => {
         e.preventDefault()
-        console.log(creds)
-        const res = await axios.put('http://localhost:5000/api/v1/user/signup', { username, firstname, lastname, password }, {
-            headers: {
-                "Content-Type": "application/json"
+        try {
+            const res = await axios.post('http://localhost:5000/api/v1/user/signup', { username, firstname, lastname, password }, {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            const json = res.data;
+            if (!json.success) {
+                alert(json.msg)
             }
-        })
-        const json = res.data;
-        if (json.success) {
             localStorage.setItem("token", json.token)
             closeSign()
             setLogged(true)
             navigate('/')
         }
-        else {
-            alert(json.msg)
+        catch (err) {
+            alert(err.response.data.msg)
         }
     }
     const onchange = (e) => {
@@ -54,7 +56,7 @@ const Signup = ({ isOpen, closeSign, openLog, setLogged }) => {
                             name="firstname"
                             className="bg-gray-800 block w-2/3 px-3 py-2 border border-gray-800 rounded-lg shadow-sm focus:outline-none focus:ring-green-600 focus:border-green-600 focus:border-[2px] sm:text-sm"
                             placeholder="First Name"
-                            // value={creds.firstname}
+                            value={firstname}
                             onChange={onchange}
                         />
                     </div>
@@ -66,7 +68,7 @@ const Signup = ({ isOpen, closeSign, openLog, setLogged }) => {
                             className="bg-gray-800 block w-2/3 px-3 py-2 border border-gray-800 rounded-lg shadow-sm focus:outline-none focus:ring-green-600 focus:border-green-600 focus:border-[2px] sm:text-sm"
                             placeholder="Last Name"
                             onChange={onchange}
-                        // value={creds.lastname}
+                            value={lastname}
                         />
                     </div>
                     <div className='flex gap-6 items-center justify-center'>
@@ -77,7 +79,7 @@ const Signup = ({ isOpen, closeSign, openLog, setLogged }) => {
                             className="bg-gray-800 block w-2/3 px-3 py-2 border border-gray-800 rounded-lg shadow-sm focus:outline-none focus:ring-green-600 focus:border-green-600 focus:border-[2px] sm:text-sm"
                             placeholder="Username"
                             onChange={onchange}
-                        // value={creds.username}
+                            value={username}
                         />
                     </div>
                     <div className='flex gap-6 items-center justify-center'>
@@ -88,7 +90,7 @@ const Signup = ({ isOpen, closeSign, openLog, setLogged }) => {
                             className=" bg-gray-800 block w-2/3 px-3 py-2 border border-gray-800 rounded-lg shadow-sm focus:outline-none focus:ring-green-600 focus:border-green-600 focus:border-[2px] sm:text-sm"
                             placeholder="Password"
                             onChange={onchange}
-                        // value={creds.password}
+                            value={password}
                         />
                     </div>
                     <div className='flex justify-center'>
