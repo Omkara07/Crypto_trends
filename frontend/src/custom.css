@@ -1,0 +1,29 @@
+.cusBtn:hover{
+    background-color: #65a30d;
+    color: black;
+    box-shadow: -2px 2px 1px #065f46,
+                -2px 0 1px #065f46,
+                -2px 2px 2px #065f46;
+    border: 2px solid #065f46;
+    z-index: 1;
+    border-radius: 0.5rem;
+}
+.delCusBtn:hover{
+    background-color: #d74a4a;
+    color: white;
+    box-shadow: -2px 2px 1px #5f0606,
+                -2px 0 1px #5f0606,
+                -2px 2px 2px #5f0606;
+    border: 2px solid #5f0606;
+    z-index: 1;
+    border-radius: 0.5rem;
+}
+.cusbar:hover{
+    background-color: #1f2937;
+    color: white;
+    box-shadow: 0 0 5px #1f2937,
+                0 0 5px #1f2937,
+                0 0 5px #1f2937,
+                0 0 50px #1f2937;
+    -webkit-box-reflect: below 1px linear-gradient(black);
+}
