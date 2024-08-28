@@ -17,7 +17,7 @@ const Login = ({ isOpen, closeLog, openSign, setLogged }) => {
     const submitHandler = async (e) => {
         e.preventDefault()
         try {
-            const res = await axios.post('http://localhost:5000/api/v1/user/signin',
+            const res = await axios.post('https://crypto-trends-api.onrender.com/api/v1/user/signin',
                 { username, password },
                 {
                     headers: {

@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const fetchData = createAsyncThunk('fetchData', async () => {
   const token = localStorage.getItem("token")
-  const res = await axios.get('http://localhost:5000/api/v1/watchlist/getall', {
+  const res = await axios.get('https://crypto-trends-api.onrender.com/api/v1/watchlist/getall', {
     headers: {
       "authentication": token,
       "Content-Type": "application/json"
@@ -13,7 +13,7 @@ export const fetchData = createAsyncThunk('fetchData', async () => {
 })
 export const addData = createAsyncThunk('addData', async (initialData) => {
   const token = localStorage.getItem("token")
-  const res = await axios.post('http://localhost:5000/api/v1/watchlist/add',
+  const res = await axios.post('https://crypto-trends-api.onrender.com/api/v1/watchlist/add',
     initialData,
     {
       headers: {
@@ -25,7 +25,7 @@ export const addData = createAsyncThunk('addData', async (initialData) => {
 })
 export const removeData = createAsyncThunk('removeData', async (initialData) => {
   const token = localStorage.getItem("token")
-  const res = await axios.delete('http://localhost:5000/api/v1/watchlist/remove',
+  const res = await axios.delete('https://crypto-trends-api.onrender.com/api/v1/watchlist/remove',
     {
       headers: {
         "authentication": token,
