@@ -3,13 +3,19 @@ import Cards from './Cards';
 import { HashLoader } from 'react-spinners';
 import top from '../images/top.png'
 import { useNavigate } from 'react-router-dom';
+import { fetchData } from '../store/watchlistSlice';
+import { useDispatch } from 'react-redux';
 const Top10 = () => {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
       alert('Sign in first')
       navigate('/')
+    }
+    else {
+      dispatch(fetchData())
     }
   }, [])
   const [data, setData] = useState([])

@@ -4,14 +4,20 @@ import Cards from './Cards';
 import { HashLoader } from 'react-spinners';
 import trend from '../images/trend2.png'
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { fetchData } from '../store/watchlistSlice';
 
 const Trending = () => {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
       alert('Sign in first')
       navigate('/')
+    }
+    else {
+      dispatch(fetchData())
     }
   }, [])
   const [data, setData] = useState([])
